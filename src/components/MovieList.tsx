@@ -1,5 +1,5 @@
 import MovieItem from "./MovieItem.tsx";
-import type { Movie } from "../types.ts";
+import type { Movie, Genre } from "../types.ts";
 import { Loader } from "lucide-react";
 
 interface MovieListProps {
@@ -7,6 +7,7 @@ interface MovieListProps {
     movies: Movie[];
     isMovieListLoading: boolean;
     movieError: string;
+    genres: Genre[];
 }
 
 const MovieList = ({
@@ -14,6 +15,7 @@ const MovieList = ({
     movies,
     isMovieListLoading,
     movieError,
+    genres,
 }: MovieListProps) => {
     return isMovieListLoading ? (
         <Loader
@@ -35,7 +37,7 @@ const MovieList = ({
             </h1>
             <div className="grid grid-cols-4 gap-8">
                 {movies.map((movie) => (
-                    <MovieItem key={movie.id} movie={movie} />
+                    <MovieItem key={movie.id} movie={movie} genres={genres} />
                 ))}
             </div>
         </div>

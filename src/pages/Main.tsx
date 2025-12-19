@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
-import { MovieService } from "../API/MovieService.js";
-import MovieList from "../components/MovieList.js";
 import { useFetching } from "../hooks/useFetching.js";
-import type { Movie } from "../types.js";
-import { Loader } from "lucide-react";
+
+import MovieList from "../components/MovieList.js";
+import { MovieService } from "../API/MovieService.js";
+import type { Movie, Genre } from "../types.js";
 
 const Main = () => {
     const [movies, setMovies] = useState<Movie[]>([]);
+    const [genres, setGenres] = useState<Genre[]>([]);
+
     const [isMovieListLoading, movieError, fetchMovies] = useFetching(
         async () => {
             const data = await MovieService.getPopularMovies();
@@ -15,8 +17,15 @@ const Main = () => {
         },
     );
 
+    const [isGenreLoading, genreError, fetchGenres] = useFetching(async () => {
+        const data = await MovieService.getGenres();
+        console.log(data);
+        setGenres(data.genres);
+    });
+
     useEffect(() => {
         fetchMovies();
+        fetchGenres();
     }, []);
 
     return (
@@ -26,6 +35,7 @@ const Main = () => {
                 movies={movies}
                 isMovieListLoading={isMovieListLoading}
                 movieError={movieError}
+                genres={genres}
             />
         </div>
     );
