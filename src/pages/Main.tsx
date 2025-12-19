@@ -21,22 +21,12 @@ const Main = () => {
 
     return (
         <div className="px-6">
-            {isMovieListLoading ? (
-                <Loader
-                    className="m-auto mt-20 animate-spin text-neutral-200"
-                    size={100}
-                />
-            ) : movieError ? (
-                <h1 className="text-center text-2xl font-bold text-red-500">
-                    Error. Please try again later.
-                </h1>
-            ) : !movies.length ? (
-                <h1 className="text-center text-2xl font-bold">
-                    There are no films right now
-                </h1>
-            ) : (
-                <MovieList title="Popular" movies={movies} />
-            )}
+            <MovieList
+                title="Popular"
+                movies={movies}
+                isMovieListLoading={isMovieListLoading}
+                movieError={movieError}
+            />
         </div>
     );
 };
