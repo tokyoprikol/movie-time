@@ -8,12 +8,12 @@ import { tvService } from "../../API/tvService.ts";
 
 import type { MediaItem, Genre } from "../../types.ts";
 
-const TvAiringTodayPage = () => {
+const TvOnTheAirPage = () => {
     const [tvShows, setTvShows] = useState<MediaItem[]>([]);
     const [genres, setGenres] = useState<Genre[]>([]);
 
     const [isTvLoading, tvError, fetchTv] = useFetching(async () => {
-        const data = await tvService.getAiringTodayTv();
+        const data = await tvService.getOnTheAirTv();
         console.log("TV data:", data);
         setTvShows(data.results);
     });
@@ -32,7 +32,7 @@ const TvAiringTodayPage = () => {
     return (
         <div className="px-6">
             <MediaCardList
-                title="TV Shows Airing Today"
+                title="Currently Airing TV Shows"
                 data={tvShows}
                 isMediaLoading={isTvLoading}
                 error={tvError}
@@ -42,4 +42,4 @@ const TvAiringTodayPage = () => {
     );
 };
 
-export default TvAiringTodayPage;
+export default TvOnTheAirPage;
