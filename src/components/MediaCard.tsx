@@ -42,7 +42,8 @@ const MediaCard = ({ dataItem, genres }: MediaCardProps) => {
                 <div className="flex items-center justify-between gap-4 py-2">
                     <div className="flex items-center gap-1">
                         <CalendarDays size={15} />
-                        {dataItem.release_date?.slice(0, 4)}
+                        {dataItem.release_date?.slice(0, 4) ||
+                            dataItem.first_air_date?.slice(0, 4)}
                     </div>
                     <div className="flex items-center justify-center gap-1 rounded-lg bg-neutral-700 px-2">
                         {movieGenres.map((g) => (
