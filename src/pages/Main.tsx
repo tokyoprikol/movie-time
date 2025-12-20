@@ -45,7 +45,7 @@ const Main = () => {
             <MediaCardList
                 title="Popular Movies"
                 data={movies}
-                isMovieListLoading={isMovieListLoading}
+                isMediaLoading={isMovieListLoading}
                 movieError={movieError}
                 genres={genres}
             />
@@ -53,7 +53,7 @@ const Main = () => {
             <MediaCardList
                 title="Popular Tv Shows"
                 data={tvShows}
-                isMovieListLoading={isTvLoading}
+                isMediaLoading={isTvLoading}
                 movieError={tvError}
                 genres={genres}
             />

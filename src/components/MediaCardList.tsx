@@ -5,7 +5,7 @@ import { Loader } from "lucide-react";
 interface MediaCardListProps {
     title: string;
     data: MediaItem[];
-    isMovieListLoading: boolean;
+    isMediaLoading: boolean;
     movieError: string;
     genres: Genre[];
 }
@@ -13,11 +13,11 @@ interface MediaCardListProps {
 const MediaCardList = ({
     title,
     data,
-    isMovieListLoading,
+    isMediaLoading,
     movieError,
     genres,
 }: MediaCardListProps) => {
-    return isMovieListLoading ? (
+    return isMediaLoading ? (
         <Loader
             className="m-auto mt-20 animate-spin text-neutral-200"
             size={100}
