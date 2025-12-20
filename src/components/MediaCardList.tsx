@@ -6,7 +6,7 @@ interface MediaCardListProps {
     title: string;
     data: MediaItem[];
     isMediaLoading: boolean;
-    movieError: string;
+    error: string;
     genres: Genre[];
 }
 
@@ -14,7 +14,7 @@ const MediaCardList = ({
     title,
     data,
     isMediaLoading,
-    movieError,
+    error,
     genres,
 }: MediaCardListProps) => {
     return isMediaLoading ? (
@@ -22,7 +22,7 @@ const MediaCardList = ({
             className="m-auto mt-20 animate-spin text-neutral-200"
             size={100}
         />
-    ) : movieError ? (
+    ) : error ? (
         <h1 className="text-center text-2xl font-bold text-red-500">
             Error. Please try again later.
         </h1>

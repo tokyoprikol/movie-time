@@ -46,7 +46,7 @@ const Main = () => {
                 title="Popular Movies"
                 data={movies}
                 isMediaLoading={isMovieListLoading}
-                movieError={movieError}
+                error={movieError}
                 genres={genres}
             />
 
@@ -54,7 +54,7 @@ const Main = () => {
                 title="Popular Tv Shows"
                 data={tvShows}
                 isMediaLoading={isTvLoading}
-                movieError={tvError}
+                error={tvError}
                 genres={genres}
             />
         </div>
