@@ -8,9 +8,9 @@ interface Response {
     total_results: number;
 }
 
-export class movieService {
-    static async getPopularMovies(page = 1) {
-        const response = await apiClient.get<Response>("/movie/popular", {
+export class tvService {
+    static async getPopularTv(page = 1) {
+        const response = await apiClient.get<Response>("/tv/popular", {
             params: {
                 language: "en-US",
                 page,

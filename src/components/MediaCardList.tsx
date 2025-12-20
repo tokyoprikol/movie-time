@@ -1,22 +1,22 @@
-import MovieItem from "./MovieItem.tsx";
-import type { Movie, Genre } from "../types.ts";
+import MediaCard from "./MediaCard.tsx";
+import type { MediaItem, Genre } from "../types.ts";
 import { Loader } from "lucide-react";
 
-interface MovieListProps {
+interface MediaCardListProps {
     title: string;
-    movies: Movie[];
+    data: MediaItem[];
     isMovieListLoading: boolean;
     movieError: string;
     genres: Genre[];
 }
 
-const MovieList = ({
+const MediaCardList = ({
     title,
-    movies,
+    data,
     isMovieListLoading,
     movieError,
     genres,
-}: MovieListProps) => {
+}: MediaCardListProps) => {
     return isMovieListLoading ? (
         <Loader
             className="m-auto mt-20 animate-spin text-neutral-200"
@@ -26,22 +26,26 @@ const MovieList = ({
         <h1 className="text-center text-2xl font-bold text-red-500">
             Error. Please try again later.
         </h1>
-    ) : !movies.length ? (
+    ) : !data.length ? (
         <h1 className="text-center text-2xl font-bold">
             There are no films right now
         </h1>
     ) : (
         <div className="mt-15">
-            <h1 className="mb-8 text-center text-4xl font-bold text-neutral-200">
+            <h1 className="mb-8 text-4xl font-bold text-neutral-200">
                 {title}
             </h1>
             <div className="grid grid-cols-4 gap-8">
-                {movies.map((movie) => (
-                    <MovieItem key={movie.id} movie={movie} genres={genres} />
+                {data.map((dataItem) => (
+                    <MediaCard
+                        key={dataItem.id}
+                        dataItem={dataItem}
+                        genres={genres}
+                    />
                 ))}
             </div>
         </div>
     );
 };
 
-export default MovieList;
+export default MediaCardList;
