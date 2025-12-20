@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { CalendarDays } from "lucide-react";
 import { getPoster } from "../utils/tmdb.ts";
 import type { Genre, MediaItem } from "../types.ts";
+import { useNavigate } from "react-router";
 
 interface MediaCardProps {
     dataItem: MediaItem;
@@ -10,6 +11,19 @@ interface MediaCardProps {
 
 const MediaCard = ({ dataItem, genres }: MediaCardProps) => {
     const [movieGenres, setMovieGenres] = useState<Genre[]>([]);
+    const router = useNavigate();
+
+    const handleNavigate = () => {
+        const url = dataItem.title ? "/movie" : "/tv";
+        const title = dataItem.title || dataItem.name;
+        router(
+            `${url}/${dataItem.id}-${title
+                ?.toLowerCase()
+                .trim()
+                .replace(/[^a-zа-яё0-9\s]/gi, "")
+                .replace(/\s+/g, "-")}`,
+        );
+    };
 
     useEffect(() => {
         if (!dataItem.genre_ids || !genres.length) {
@@ -23,7 +37,10 @@ const MediaCard = ({ dataItem, genres }: MediaCardProps) => {
 
     return (
         <div className="overflow-hidden rounded-xl border-2 border-neutral-800 bg-neutral-800/40">
-            <div className="relative overflow-hidden">
+            <div
+                className="relative cursor-pointer overflow-hidden"
+                onClick={() => handleNavigate()}
+            >
                 <img
                     src={getPoster(dataItem.poster_path)}
                     alt="poster"

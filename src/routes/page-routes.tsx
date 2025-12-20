@@ -8,6 +8,8 @@ import TvTopRatedPage from "../pages/TvPages/TvTopRatedPage";
 import TvOnTheAirPage from "../pages/TvPages/TvOnTheAirPage";
 import TvAiringTodayrPage from "../pages/TvPages/TvAiringTodayPage";
 
+import SingleMediaPage from "../pages/SingleMediaPage";
+
 export const routes = [
     { path: "/", element: <MoviePopularPage /> },
     { path: "/movie/popular", element: <MoviePopularPage /> },
@@ -18,4 +20,6 @@ export const routes = [
     { path: "/tv/top-rated", element: <TvTopRatedPage /> },
     { path: "/tv/on-the-air", element: <TvOnTheAirPage /> },
     { path: "/tv/airing-today", element: <TvAiringTodayrPage /> },
+
+    { path: "/:mediaType/:id", element: <SingleMediaPage /> },
 ];
