@@ -1,11 +1,14 @@
 import Header from "./components/Header";
 import Main from "./pages/Main";
+import { Routes, Route } from "react-router";
 
 function App() {
     return (
         <>
             <Header />
-            <Main />
+            <Routes>
+                <Route path="/" element={<Main />} />
+            </Routes>
         </>
     );
 }
