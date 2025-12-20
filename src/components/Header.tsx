@@ -2,7 +2,7 @@ import Logo from "./UI/Logo/Logo";
 import DropdownMenu from "./UI/DropdownMenu";
 import Input from "./UI/input/Input";
 import Button from "./UI/button/Button";
-import { moviesMenu, tvMenu } from "./routes/menu-routes.ts";
+import { moviesMenu, tvMenu } from "../routes/menu-routes.ts";
 
 const Header = () => {
     return (
