@@ -31,7 +31,7 @@ const MediaCardList = ({
             There are no films right now
         </h1>
     ) : (
-        <div className="mt-15">
+        <div className="mx-14 my-15">
             <h1 className="mb-8 text-4xl font-bold text-neutral-200">
                 {title}
             </h1>
