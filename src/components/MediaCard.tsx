@@ -47,9 +47,9 @@ const MediaCard = ({ dataItem, genres }: MediaCardProps) => {
                     className="absolute inset-0 h-full w-full rounded-xl object-cover opacity-50 blur-md"
                 />
                 <img
-                    src={getPoster(dataItem.poster_path)}
+                    src={getPoster(dataItem.poster_path, "original")}
                     alt="poster"
-                    className="relative m-auto object-cover"
+                    className="relative m-auto w-60 object-cover"
                 />
             </div>
             <div className="p-4 text-neutral-300">

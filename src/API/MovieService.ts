@@ -38,4 +38,13 @@ export class movieService {
         });
         return response.data;
     }
+
+    static async getMovieById(id: number) {
+        const response = await apiClient.get<Response>("/movie/" + id, {
+            params: {
+                language: "en-US",
+            },
+        });
+        return response.data;
+    }
 }

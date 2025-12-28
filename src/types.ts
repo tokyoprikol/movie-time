@@ -3,6 +3,7 @@ export interface MediaItem {
     poster_path: string;
     overview: string;
     genre_ids: number[];
+    backdrop_path: string;
 
     title?: string; // for Movie
     release_date?: string; // for Movie

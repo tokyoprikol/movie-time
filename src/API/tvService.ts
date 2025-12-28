@@ -48,4 +48,13 @@ export class tvService {
         });
         return response.data;
     }
+
+    static async getTvById(id: number) {
+        const response = await apiClient.get<Response>("/tv/" + id, {
+            params: {
+                language: "en-US",
+            },
+        });
+        return response.data;
+    }
 }
