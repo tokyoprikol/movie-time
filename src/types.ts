@@ -13,6 +13,7 @@ export interface MediaItem {
     genres?: Genre[];
     tagline?: string;
     created_by?: string;
+    content_ratings?: any;
 }
 
 export interface Genre {

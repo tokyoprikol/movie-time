@@ -12,9 +12,6 @@ const SingleMediaPage = () => {
     const mediaId = Number(id?.split("-")[0]);
 
     const [media, setMedia] = useState<MediaItem | null>(null);
-    const [contRatings, setContRatings] = useState<ContentRating[] | null>(
-        null,
-    );
 
     const [isMediaLoading, mediaError, fetchMedia] = useFetching(
         async (id: number) => {
@@ -37,23 +34,12 @@ const SingleMediaPage = () => {
         },
     );
 
-    const [isContRatLoading, contRatError, fetchContRat] = useFetching(
-        async (id: number) => {
-            const data = await tvService.getTvContentRatingById(id);
-
-            console.log(data.results);
-            setContRatings(data.results);
-        },
-    );
-
-    const usContRat: ContentRating | undefined = contRatings?.find(
-        (r) => r.iso_3166_1 === "US",
-    );
+    const usContRat: ContentRating | undefined =
+        media?.content_ratings.results.find((r) => r.iso_3166_1 === "US");
 
     useEffect(() => {
         if (mediaId) {
             fetchMedia(mediaId);
-            fetchContRat(mediaId);
         }
     }, [mediaId, mediaType]);
 
