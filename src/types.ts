@@ -10,9 +10,17 @@ export interface MediaItem {
 
     name?: string; // for TvShow
     first_air_date?: string; // for TvShow
+    genres?: Genre[];
+    tagline?: string;
+    created_by?: string;
 }
 
 export interface Genre {
     id: number;
     name: string;
+}
+
+export interface ContentRating {
+    iso_3166_1: string;
+    rating: string;
 }

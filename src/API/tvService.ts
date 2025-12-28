@@ -57,4 +57,16 @@ export class tvService {
         });
         return response.data;
     }
+
+    static async getTvContentRatingById(id: number) {
+        const response = await apiClient.get<Response>(
+            "/tv/" + id + "/content_ratings",
+            {
+                params: {
+                    language: "en-US",
+                },
+            },
+        );
+        return response.data;
+    }
 }
