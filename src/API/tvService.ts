@@ -53,7 +53,7 @@ export class tvService {
         const response = await apiClient.get<Response>("/tv/" + id, {
             params: {
                 language: "en-US",
-                append_to_response: "content_ratings",
+                append_to_response: "content_ratings,aggregate_credits",
             },
         });
         return response.data;

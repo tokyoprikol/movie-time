@@ -25,3 +25,10 @@ export interface ContentRating {
     iso_3166_1: string;
     rating: string;
 }
+
+export interface Cast {
+    id: number;
+    name: string;
+    profile_path: string;
+    roles: any;
+}
