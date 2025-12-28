@@ -4,8 +4,9 @@ import { useFetching } from "../hooks/useFetching";
 import { tvService } from "../API/tvService";
 import { movieService } from "../API/movieService";
 import type { MediaItem, ContentRating, Cast } from "../types";
-import { getPoster } from "../utils/tmdb";
 import { Loader } from "lucide-react";
+import ActorCard from "../components/ActorCard";
+import { getPoster } from "../utils/tmdb";
 
 const SingleMediaPage = () => {
     const { mediaType, id } = useParams();
@@ -73,7 +74,7 @@ const SingleMediaPage = () => {
                         src={getPoster(media.poster_path, "original")}
                         alt="poster"
                     />
-                    <div className="">
+                    <div>
                         <div className="text-4xl">
                             <span className="font-semibold">
                                 {media.title || media.name}
@@ -124,28 +125,8 @@ const SingleMediaPage = () => {
                 <div>
                     <span className="text-3xl font-semibold">Series Cast</span>
                     <div className="custom-scrollbar mt-5 flex gap-5 overflow-x-auto scroll-smooth pb-4">
-                        {cast?.slice(0, 10).map((c, i) => (
-                            <div
-                                key={c.id}
-                                className="scr max-w-40 shrink-0 rounded-lg bg-neutral-800 shadow-xl"
-                            >
-                                <img
-                                    className="h-50 w-40 rounded-t-lg object-cover"
-                                    src={getPoster(c.profile_path, "original")}
-                                    alt="Poster"
-                                />
-                                <div className="flex flex-col p-3 text-sm">
-                                    <span className="font-semibold">
-                                        {c.name}
-                                    </span>
-                                    <span className="text-neutral-300">
-                                        {c.roles[0].character}
-                                    </span>
-                                    <span className="text-neutral-400">
-                                        {c.roles[0].episode_count} Episodes
-                                    </span>
-                                </div>
-                            </div>
+                        {cast?.slice(0, 10).map((c) => (
+                            <ActorCard c={c} key={c.id} />
                         ))}
                     </div>
                 </div>
