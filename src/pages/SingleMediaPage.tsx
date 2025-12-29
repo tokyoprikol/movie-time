@@ -39,7 +39,7 @@ const SingleMediaPage = () => {
 
             console.log(data);
             setMedia(data);
-            setCast(data.aggregate_credits.cast);
+            setCast(data.aggregate_credits?.cast || data.credits?.cast || []);
             setReviews(data.reviews.results);
         },
     );

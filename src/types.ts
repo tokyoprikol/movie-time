@@ -11,12 +11,21 @@ export interface MediaItem {
     overview: string;
     genre_ids: number[];
     backdrop_path: string;
+    reviews: {
+        results: Review[];
+    };
 
-    title?: string; // for Movie
-    release_date?: string; // for Movie
+    // for Movie
+    title?: string;
+    release_date?: string;
+    credits?: {
+        cast: Cast[];
+    };
+    // ********
 
-    name?: string; // for TvShow
-    first_air_date?: string; // for TvShow
+    // for TvShow
+    name?: string;
+    first_air_date?: string;
     genres?: Genre[];
     tagline?: string;
     created_by?: {
@@ -27,12 +36,11 @@ export interface MediaItem {
     content_ratings?: {
         results: ContentRating[];
     };
-    aggregate_credits: {
+    aggregate_credits?: {
         cast: Cast[];
     };
-    reviews: {
-        results: Review[];
-    };
+
+    // ********
 }
 
 export interface Genre {
@@ -49,12 +57,11 @@ export interface Cast {
     id: number;
     name: string;
     profile_path: string;
-    roles: {
-        0: {
-            character: string;
-            episode_count: number;
-        };
-    };
+    roles?: {
+        character: string;
+        episode_count: number;
+    }[];
+    character?: string;
 }
 
 export interface Review {

@@ -29,7 +29,10 @@ const SingleMediaMainDetails = ({ media, usContRat }: DetailsProps) => {
                             {media.title || media.name}
                         </span>
                         <span className="ml-2 text-neutral-300">
-                            ({media.first_air_date?.slice(0, 4)})
+                            (
+                            {media.first_air_date?.slice(0, 4) ||
+                                media.release_date?.slice(0, 4)}
+                            )
                         </span>
                     </div>
                     <div className="mt-2 flex items-center">

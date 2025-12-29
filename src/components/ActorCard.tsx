@@ -15,10 +15,16 @@ const ActorCard = ({ c }: ActorCardProps) => {
             />
             <div className="flex flex-col p-3 text-sm">
                 <span className="font-semibold">{c.name}</span>
-                <span className="text-neutral-300">{c.roles[0].character}</span>
-                <span className="text-neutral-400">
-                    {c.roles[0].episode_count} Episodes
+                <span className="text-neutral-300">
+                    {c.roles?.[0].character || c.character}
                 </span>
+                {c.roles?.[0].episode_count ? (
+                    <span className="text-neutral-400">
+                        {c.roles?.[0].episode_count} Episodes
+                    </span>
+                ) : (
+                    ""
+                )}
             </div>
         </div>
     );

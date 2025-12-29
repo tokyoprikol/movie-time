@@ -30,8 +30,7 @@ const ReviewItem = ({ review }: ReviewItemProps) => {
                     <span className="font-semibold">{review.author}</span>
                     <div className="flex">
                         <div className="flex items-center gap-2 rounded-md bg-neutral-900 px-2">
-                            {review.author_details.rating}
-
+                            {review.author_details.rating || "No rating"}
                             <Star size={17} color="#ffd000" fill="#ffd000" />
                         </div>
                         <span className="ml-3">

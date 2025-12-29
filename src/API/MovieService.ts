@@ -43,6 +43,7 @@ export class movieService {
         const response = await apiClient.get<MediaItem>("/movie/" + id, {
             params: {
                 language: "en-US",
+                append_to_response: "release_dates,credits,reviews",
             },
         });
         return response.data;
