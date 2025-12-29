@@ -40,7 +40,7 @@ export class movieService {
     }
 
     static async getMovieById(id: number) {
-        const response = await apiClient.get<Response>("/movie/" + id, {
+        const response = await apiClient.get<MediaItem>("/movie/" + id, {
             params: {
                 language: "en-US",
             },

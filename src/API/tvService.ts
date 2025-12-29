@@ -1,12 +1,5 @@
 import { apiClient } from "./api.ts";
-import type { MediaItem } from "../types.ts";
-
-interface Response {
-    page: number;
-    results: MediaItem[];
-    total_pages: number;
-    total_results: number;
-}
+import type { Response, MediaItem } from "../types.ts";
 
 export class tvService {
     static async getPopularTv(page = 1) {
@@ -50,24 +43,12 @@ export class tvService {
     }
 
     static async getTvById(id: number) {
-        const response = await apiClient.get<Response>("/tv/" + id, {
+        const response = await apiClient.get<MediaItem>("/tv/" + id, {
             params: {
                 language: "en-US",
-                append_to_response: "content_ratings,aggregate_credits",
+                append_to_response: "content_ratings,aggregate_credits,reviews",
             },
         });
-        return response.data;
-    }
-
-    static async getTvContentRatingById(id: number) {
-        const response = await apiClient.get<Response>(
-            "/tv/" + id + "/content_ratings",
-            {
-                params: {
-                    language: "en-US",
-                },
-            },
-        );
         return response.data;
     }
 }

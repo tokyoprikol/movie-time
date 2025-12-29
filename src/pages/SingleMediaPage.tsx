@@ -3,10 +3,11 @@ import { useParams } from "react-router";
 import { useFetching } from "../hooks/useFetching";
 import { tvService } from "../API/tvService";
 import { movieService } from "../API/movieService";
-import type { MediaItem, ContentRating, Cast } from "../types";
-import { Loader } from "lucide-react";
 import ActorCard from "../components/ActorCard";
+import ErrorMes from "../components/ErrorMes";
 import { getPoster } from "../utils/tmdb";
+import { Loader } from "lucide-react";
+import type { MediaItem, ContentRating, Cast, Review } from "../types";
 
 const SingleMediaPage = () => {
     const { mediaType, id } = useParams();
@@ -14,6 +15,7 @@ const SingleMediaPage = () => {
 
     const [media, setMedia] = useState<MediaItem | null>(null);
     const [cast, setCast] = useState<Cast[] | null>(null);
+    const [reviews, setReviews] = useState<Review[] | null>(null);
 
     const [isMediaLoading, mediaError, fetchMedia] = useFetching(
         async (id: number) => {
@@ -34,11 +36,12 @@ const SingleMediaPage = () => {
             console.log(data);
             setMedia(data);
             setCast(data.aggregate_credits.cast);
+            setReviews(data.reviews.results);
         },
     );
 
     const usContRat: ContentRating | undefined =
-        media?.content_ratings.results.find((r) => r.iso_3166_1 === "US");
+        media?.content_ratings?.results.find((r) => r.iso_3166_1 === "US");
 
     useEffect(() => {
         if (mediaId) {
@@ -52,9 +55,7 @@ const SingleMediaPage = () => {
             size={100}
         />
     ) : mediaError ? (
-        <h1 className="text-center text-2xl font-bold text-red-500">
-            Error. Please try again later.
-        </h1>
+        <ErrorMes />
     ) : !media ? (
         <h1>Media not found</h1>
     ) : (
@@ -88,12 +89,7 @@ const SingleMediaPage = () => {
                                 {usContRat?.rating}
                             </span>
                             <div className="ml-2">
-                                {media.genres?.map((g, i) => (
-                                    <span key={g.id}>
-                                        {g.name}
-                                        {i !== media.genres.length - 1 && ", "}
-                                    </span>
-                                ))}
+                                {media.genres?.map((g) => g.name).join(", ")}
                             </div>
                         </div>
                         <div className="mt-10 text-neutral-300 italic">
@@ -130,6 +126,10 @@ const SingleMediaPage = () => {
                         ))}
                     </div>
                 </div>
+            </div>
+            <div className="px-15 py-10">
+                <span className="text-3xl font-semibold">Reviews</span>
+                <div>{}</div>
             </div>
         </div>
     );
