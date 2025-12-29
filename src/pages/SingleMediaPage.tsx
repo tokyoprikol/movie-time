@@ -5,6 +5,7 @@ import { tvService } from "../API/tvService";
 import { movieService } from "../API/movieService";
 import ActorCard from "../components/ActorCard";
 import ErrorMes from "../components/ErrorMes";
+import ReviewItem from "../components/ReviewItem";
 import { getPoster } from "../utils/tmdb";
 import { Loader } from "lucide-react";
 import type { MediaItem, ContentRating, Cast, Review } from "../types";
@@ -129,7 +130,11 @@ const SingleMediaPage = () => {
             </div>
             <div className="px-15 py-10">
                 <span className="text-3xl font-semibold">Reviews</span>
-                <div>{}</div>
+                <div className="mt-10">
+                    {reviews?.map((review) => (
+                        <ReviewItem key={review.id} review={review} />
+                    ))}
+                </div>
             </div>
         </div>
     );
