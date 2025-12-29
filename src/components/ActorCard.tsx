@@ -1,6 +1,11 @@
 import { getPoster } from "../utils/tmdb";
+import type { Cast } from "../types.ts";
 
-const ActorCard = ({ c }: any) => {
+interface ActorCardProps {
+    c: Cast;
+}
+
+const ActorCard = ({ c }: ActorCardProps) => {
     return (
         <div className="scr max-w-40 shrink-0 cursor-pointer rounded-lg bg-neutral-800 shadow-xl">
             <img

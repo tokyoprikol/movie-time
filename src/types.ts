@@ -50,8 +50,10 @@ export interface Cast {
     name: string;
     profile_path: string;
     roles: {
-        character: string;
-        episode_count: number;
+        0: {
+            character: string;
+            episode_count: number;
+        };
     };
 }
 

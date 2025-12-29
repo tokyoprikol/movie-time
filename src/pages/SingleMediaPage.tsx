@@ -3,12 +3,12 @@ import { useParams } from "react-router";
 import { useFetching } from "../hooks/useFetching";
 import { tvService } from "../API/tvService";
 import { movieService } from "../API/movieService";
-import ActorCard from "../components/ActorCard";
 import ErrorMes from "../components/ErrorMes";
 import { getPoster } from "../utils/tmdb";
 import { Loader } from "lucide-react";
 import type { MediaItem, ContentRating, Cast, Review } from "../types";
 import ReviewList from "../components/ReviewList.tsx";
+import ActorList from "../components/ActorList.tsx";
 
 const SingleMediaPage = () => {
     const { mediaType, id } = useParams();
@@ -118,16 +118,7 @@ const SingleMediaPage = () => {
                     </div>
                 </div>
             </div>
-            <div className="px-15 py-10">
-                <div>
-                    <span className="text-3xl font-semibold">Series Cast</span>
-                    <div className="custom-scrollbar mt-5 flex gap-5 overflow-x-auto scroll-smooth pb-4">
-                        {cast?.slice(0, 10).map((c) => (
-                            <ActorCard c={c} key={c.id} />
-                        ))}
-                    </div>
-                </div>
-            </div>
+            <ActorList cast={cast} />
             <ReviewList reviews={reviews} />
         </div>
     );
