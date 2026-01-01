@@ -2,12 +2,16 @@ import { UserRound, Star } from "lucide-react";
 import dayjs from "dayjs";
 import type { Review } from "../types.ts";
 import { getPoster } from "../utils/tmdb.ts";
+import { useState } from "react";
 
 interface ReviewItemProps {
     review: Review;
 }
 
 const ReviewItem = ({ review }: ReviewItemProps) => {
+    const [isCommentOpen, setIsCommentOpen] = useState(false);
+    const shouldTruncate = review.content.length > 350;
+
     return (
         <div className="mb-10 rounded-2xl bg-neutral-800 p-5 shadow-2xl">
             <div className="mb-3 flex items-center">
@@ -40,7 +44,18 @@ const ReviewItem = ({ review }: ReviewItemProps) => {
                     </div>
                 </div>
             </div>
-            <div className="text-sm">{review.content}</div>
+            <div className="text-sm">
+                <div className={shouldTruncate && !isCommentOpen ? 'line-clamp-3' : ''}>
+                    {review.content}
+                </div>
+                {shouldTruncate && (
+                    <button
+                        className='underline cursor-pointer'
+                        onClick={() => setIsCommentOpen(!isCommentOpen)}>
+                        {isCommentOpen ? 'close' : 'read the rest.'}
+                    </button>
+                )}
+            </div>
         </div>
     );
 };
