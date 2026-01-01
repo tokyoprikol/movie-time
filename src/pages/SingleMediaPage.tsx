@@ -45,7 +45,8 @@ const SingleMediaPage = () => {
     );
 
     const usContRat: ContentRating | undefined =
-        media?.content_ratings?.results.find((r) => r.iso_3166_1 === "US");
+        media?.content_ratings?.results.find((r) => r.iso_3166_1 === "US") ||
+        media?.release_dates?.results.find((r) => r.iso_3166_1 === "US")
 
     useEffect(() => {
         if (mediaId) {

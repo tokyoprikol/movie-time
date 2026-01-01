@@ -21,6 +21,15 @@ export interface MediaItem {
     credits?: {
         cast: Cast[];
     };
+    release_dates?: {
+        results: {
+            iso_3166_1: string;
+            release_dates: {
+                certification: string;
+            }[];
+        }[];
+    };
+
     // ********
 
     // for TvShow

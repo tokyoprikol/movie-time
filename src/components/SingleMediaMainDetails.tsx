@@ -37,7 +37,8 @@ const SingleMediaMainDetails = ({ media, usContRat }: DetailsProps) => {
                     </div>
                     <div className="mt-2 flex items-center">
                         <span className="rounded-sm border border-neutral-400 p-1 text-sm text-neutral-400">
-                            {usContRat?.rating}
+                            {usContRat?.rating ||
+                                usContRat?.release_dates[0].certification}
                         </span>
                         <div className="ml-2">
                             {media.genres?.map((g) => g.name).join(", ")}
