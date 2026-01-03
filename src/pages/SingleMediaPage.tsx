@@ -11,7 +11,13 @@ import ActorList from "../components/ActorList.tsx";
 import SingleMediaMainDetails from "../components/SingleMediaMainDetails.tsx";
 
 import { Loader } from "lucide-react";
-import type { MediaItem, ContentRating, Cast, Review } from "../types";
+import type {
+    MediaItem,
+    ContentRating,
+    Cast,
+    Review,
+    MovieContentRating,
+} from "../types";
 
 const SingleMediaPage = () => {
     const { mediaType, id } = useParams();
@@ -44,9 +50,9 @@ const SingleMediaPage = () => {
         },
     );
 
-    const usContRat: ContentRating | undefined =
+    const usContRat: ContentRating | MovieContentRating | undefined =
         media?.content_ratings?.results.find((r) => r.iso_3166_1 === "US") ||
-        media?.release_dates?.results.find((r) => r.iso_3166_1 === "US")
+        media?.release_dates?.results.find((r) => r.iso_3166_1 === "US");
 
     useEffect(() => {
         if (mediaId) {
@@ -65,7 +71,11 @@ const SingleMediaPage = () => {
         <h1>Media not found</h1>
     ) : (
         <div>
-            <SingleMediaMainDetails media={media} usContRat={usContRat} />
+            <SingleMediaMainDetails
+                media={media}
+                mediaType={mediaType}
+                usContRat={usContRat}
+            />
             <ActorList cast={cast} />
             <ReviewList reviews={reviews} />
         </div>

@@ -1,12 +1,17 @@
 import { getPoster } from "../utils/tmdb.ts";
-import type { ContentRating, MediaItem } from "../types.ts";
+import type { ContentRating, MediaItem, MovieContentRating } from "../types.ts";
 
 interface DetailsProps {
     media: MediaItem;
-    usContRat: ContentRating | undefined;
+    mediaType: any;
+    usContRat: ContentRating | MovieContentRating | undefined;
 }
 
-const SingleMediaMainDetails = ({ media, usContRat }: DetailsProps) => {
+const SingleMediaMainDetails = ({
+    media,
+    mediaType,
+    usContRat,
+}: DetailsProps) => {
     return (
         <div className="relative w-full overflow-hidden">
             <img
@@ -37,8 +42,9 @@ const SingleMediaMainDetails = ({ media, usContRat }: DetailsProps) => {
                     </div>
                     <div className="mt-2 flex items-center">
                         <span className="rounded-sm border border-neutral-400 p-1 text-sm text-neutral-400">
-                            {usContRat?.rating ||
-                                usContRat?.release_dates[0].certification}
+                            {(usContRat as ContentRating)?.rating ||
+                                (usContRat as MovieContentRating)
+                                    ?.release_dates[0].certification}
                         </span>
                         <div className="ml-2">
                             {media.genres?.map((g) => g.name).join(", ")}
@@ -53,19 +59,21 @@ const SingleMediaMainDetails = ({ media, usContRat }: DetailsProps) => {
                             {media.overview}
                         </span>
                     </div>
-                    <div className="mt-10">
-                        <span>Created By:</span>
-                        <div className="mt-4 flex gap-5">
-                            {media.created_by?.map((c) => (
-                                <div
-                                    key={c.id}
-                                    className="cursor-pointer border-b font-semibold"
-                                >
-                                    {c.name}
-                                </div>
-                            ))}
+                    {mediaType === "tv" && (
+                        <div className="mt-10">
+                            <span>Created By:</span>
+                            <div className="mt-4 flex gap-5">
+                                {media.created_by?.map((c) => (
+                                    <div
+                                        key={c.id}
+                                        className="cursor-pointer border-b font-semibold"
+                                    >
+                                        {c.name}
+                                    </div>
+                                ))}
+                            </div>
                         </div>
-                    </div>
+                    )}
                 </div>
             </div>
         </div>

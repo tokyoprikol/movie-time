@@ -22,12 +22,7 @@ export interface MediaItem {
         cast: Cast[];
     };
     release_dates?: {
-        results: {
-            iso_3166_1: string;
-            release_dates: {
-                certification: string;
-            }[];
-        }[];
+        results: MovieContentRating[];
     };
 
     // ********
@@ -60,6 +55,13 @@ export interface Genre {
 export interface ContentRating {
     iso_3166_1: string;
     rating: string;
+}
+
+export interface MovieContentRating {
+    iso_3166_1: string;
+    release_dates: {
+        certification: string;
+    }[];
 }
 
 export interface Cast {
