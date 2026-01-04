@@ -1,5 +1,6 @@
 type ButtonProps = {
     children: React.ReactNode;
+    onClick?: () => void;
 };
 
 const Button = ({ children, ...props }: ButtonProps) => {

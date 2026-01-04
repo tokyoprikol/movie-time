@@ -87,3 +87,8 @@ export interface Review {
     content: string;
     created_at: string;
 }
+
+export interface User {
+    email: string;
+    password: string;
+}
